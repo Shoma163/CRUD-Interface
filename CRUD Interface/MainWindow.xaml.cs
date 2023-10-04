@@ -58,19 +58,26 @@ namespace CRUD_Interface
 
         private void lvProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            tbProduct.Text = (lvProduct.SelectedItem as ClassProduct).name.ToString();
+            if (lvProduct.SelectedItem != null)
+            {
+                tbProduct.Text = (lvProduct.SelectedItem as ClassProduct).name.ToString();
+            }
         }
 
         private void Button_Click_UpdateProduct(object sender, RoutedEventArgs e)
         {
-            tbProduct.Text = (lvProduct.SelectedItem as ClassProduct).name.ToString();
-            ClassProduct classProduct = lvProduct.SelectedItem as ClassProduct;
+            int ID = (lvProduct.SelectedItem as ClassProduct).id;
+            string product =tbProduct.Text.Trim();
 
-            NpgsqlCommand cmd = Connection.GetCommand("UPDATE \"product\" SET \"name\"= @name returning id");
-            cmd.Parameters.AddWithValue("@name", NpgsqlDbType.Varchar, classProduct.name);
-            int result = cmd.ExecuteNonQuery();
+            NpgsqlCommand cmd = Connection.GetCommand("UPDATE \"product\" SET \"name\"= @name where id = @id");
+            cmd.Parameters.AddWithValue("@id", NpgsqlDbType.Integer, ID);
+            cmd.Parameters.AddWithValue("@name", NpgsqlDbType.Varchar, product);
+            var result = cmd.ExecuteNonQuery();
             if (result == 0) { return; }
 
+            tbProduct.Clear();
+            Connection.products.Clear();
+            CbBindingProduct();
         }
 
         private void Button_Click_DeleteProduct(object sender, RoutedEventArgs e)
