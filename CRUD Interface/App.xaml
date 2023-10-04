@@ -1,0 +1,25 @@
+﻿<Application x:Class="CRUD_Interface.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CRUD_Interface"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <DataTemplate x:Key="listProduct">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Margin="10" HorizontalAlignment="Center">
+                    <Run Text="{Binding id}" FontWeight="Bold" FontSize="14"></Run>
+                </TextBlock>
+
+                <TextBlock Grid.Column="1" Margin="2" VerticalAlignment="Center">
+                    <Run Text="Наименование: " FontWeight="Bold"></Run>
+                    <Run Text="{Binding name}"></Run>
+                </TextBlock>    
+            </Grid>
+        </DataTemplate>
+    </Application.Resources>
+</Application>
