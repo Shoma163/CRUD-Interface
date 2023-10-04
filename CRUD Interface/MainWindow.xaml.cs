@@ -58,12 +58,12 @@ namespace CRUD_Interface
 
         private void lvProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //tbProduct.Text = (lvProduct.SelectedItem as ClassProduct).name.ToString();
+            tbProduct.Text = (lvProduct.SelectedItem as ClassProduct).name.ToString();
         }
 
         private void Button_Click_UpdateProduct(object sender, RoutedEventArgs e)
         {
-            string productName = tbProduct.Text.Trim();
+            tbProduct.Text = (lvProduct.SelectedItem as ClassProduct).name.ToString();
             ClassProduct classProduct = lvProduct.SelectedItem as ClassProduct;
 
             NpgsqlCommand cmd = Connection.GetCommand("UPDATE \"product\" SET \"name\"= @name returning id");
