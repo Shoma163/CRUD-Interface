@@ -9,6 +9,7 @@ namespace CRUD_Interface
 {
     public class ClassProduct
     {
+        public ClassProduct() { }
         public ClassProduct(int id, string name )
         {
             this.id = id;

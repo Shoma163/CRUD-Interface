@@ -11,8 +11,18 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ListView Grid.Column="0" Margin="5" Name="lvProduct" ItemTemplate="{StaticResource listProduct}"></ListView>
+        <Grid  Grid.Column="0">
+            <Label Content="Список товаров" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"></Label>
+            <ListView Margin="5 35 5 5" Name="lvProduct" ItemTemplate="{StaticResource listProduct}" VerticalContentAlignment="Stretch" SelectionChanged="lvProduct_SelectionChanged"></ListView>
+        </Grid>
+
+        <StackPanel Grid.Column="2">
+            <Label Content="Добавление товара" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"></Label>
+            <TextBox Margin="5" Name="tbProduct"></TextBox>
+            <Button Margin="5" Content="Добавить товар" Background="White" Click="Button_Click_AddProduct"></Button>
+            <Button Margin="5" Content="Изменить товар" Background="White" Click="Button_Click_UpdateProduct"></Button>
+            <Button Margin="5" Content="Удалить товар" Background="White" Click="Button_Click_DeleteProduct"></Button>
+        </StackPanel>
     </Grid>
 </Window>
